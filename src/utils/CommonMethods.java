@@ -1,16 +1,23 @@
 package utils;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchFrameException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ISelect;
 import org.openqa.selenium.support.ui.Select;
+
 
 public class CommonMethods {
 	
@@ -150,5 +157,31 @@ public class CommonMethods {
 		}catch(NoSuchFrameException e) {
 			System.out.println("Frame is not present");
 		}
+	}
+	public static void takeScreenshot(String folderName, String fileName) {
+		TakesScreenshot ts=(TakesScreenshot)driver;
+        File scr=ts.getScreenshotAs(OutputType.FILE);
+        
+        try {
+			FileUtils.copyFile(scr, new File("screenshots/"+folderName+"/"+fileName+".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Unable to take screesnhot");
+		}
+	}
+	public static void scrollDown(int pixels) {
+		JavascriptExecutor js=(JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,"+pixels+")");
+	}
+	
+	public static void scrollUp(int pixels) {
+		JavascriptExecutor js=(JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,-"+pixels+")");
+	}
+	
+	public static void jsClick(WebElement element) {
+		
+		JavascriptExecutor js=(JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", element);
 	}
 }
