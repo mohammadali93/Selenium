@@ -19,7 +19,6 @@ public class QAToolsTest extends CommonMethods{
 				ele.click();
 			}
 		}
-		
-		Iterator<WebElement> it=
+	
 	}
 }

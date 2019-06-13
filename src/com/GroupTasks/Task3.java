@@ -26,10 +26,10 @@ public class Task3 extends CommonMethods {
 		
 		driver.findElement(By.cssSelector("input#datepicker")).click();
 		int expectedValue=8/29/2019;
-		while(driver.findElements(By.className("//*[@id=\'ui-datepicker-div\']/table"));
+		//while(driver.findElements(By.className("//*[@id=\'ui-datepicker-div\']/table"));
 		
 		List <WebElement> cols=driver.findElements(By.xpath("//*[@id='ui-datepicker-div']/table/tbody/tr[]"));
-		) {
+		 {
 			
 		}
 		
